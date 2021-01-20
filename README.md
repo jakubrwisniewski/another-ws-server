@@ -4,7 +4,7 @@ Simple websocket server with multiclients support
 
 ## How to use server
 
-```
+```js
 const { Server } = require('node-ws');
 const server = new Server({
 	allowedOrigins: [], // allow all if empty or missing
@@ -18,7 +18,7 @@ server.stop();
 
 
 ## How to use client
-```
+```js
 const { Client } = require('node-ws');
 const client = new Client({
 	host: 'ws://...',
@@ -36,7 +36,7 @@ client.addListener('chat:message', (message) => {
 
 
 ## How to use web client
-```
+```js
 const { WebClient } = require('node-ws');
 const webClient = new WebClient({
 	host: 'ws://...',
