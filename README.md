@@ -1,6 +1,14 @@
 # node-ws
-Simple websocket server with multiclients support
+Simple websocket server with multi-client and separate projects support. Built up on `websocket` package.
 
+## How multi-client support works?
+
+Server receives message from client and broadcasts it to all connected clients (besides the one who sends the message).
+
+## How separate projects work?
+
+You need only a single websocket server to handle multiple projects separately. This is achieved by `pid` flag passed with options. 
+How it works? When clients sends a message to server, server recognize its pid. Server broadcast this message to other clients with the same pid. Other clients (from other projects) won't receive this message.
 
 ## How to use server
 
