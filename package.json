@@ -1,14 +1,14 @@
 {
-	"name": "node-ws",
+	"name": "another-ws-server",
 	"version": "1.0.0",
-	"description": "Simple multi-client node websocket server",
+	"description": "Simple multi-client, multi-project node websocket server and client",
 	"scripts": {
 		"start": "node src/server.js",
 		"test": "jest --ci --watchAll=false"
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jakubrwisniewski/node-ws.git"
+		"url": "git+https://github.com/jakubrwisniewski/another-ws-server.git"
 	},
 	"keywords": [
 		"node",
@@ -18,9 +18,9 @@
 	"author": "Jakub Wiśniewski",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/jakubrwisniewski/node-ws/issues"
+		"url": "https://github.com/jakubrwisniewski/another-ws-server/issues"
 	},
-	"homepage": "https://github.com/jakubrwisniewski/node-ws#readme",
+	"homepage": "https://github.com/jakubrwisniewski/another-ws-server#readme",
 	"dependencies": {
 		"websocket": "^1.0.33"
 	},

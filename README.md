@@ -1,4 +1,4 @@
-# node-ws
+# another-ws-server
 Simple websocket server with multi-client and separate projects support. Built up on `websocket` package.
 
 ## How multi-client support works?
@@ -7,13 +7,13 @@ Server receives message from client and broadcasts it to all connected clients (
 
 ## How separate projects work?
 
-You need only a single websocket server to handle multiple projects separately. This is achieved by `pid` flag passed with options. 
+You need only a single websocket server to handle multiple projects separately. This is achieved by `pid` flag passed with options.
 How it works? When clients sends a message to server, server recognize its pid. Server broadcast this message to other clients with the same pid. Other clients (from other projects) won't receive this message.
 
 ## How to use server
 
 ```js
-const { Server } = require('node-ws');
+const { Server } = require('another-ws-server');
 const server = new Server({
 	allowedOrigins: [], // allow all if empty or missing
 	protocol: 'echo-protocol',
@@ -27,7 +27,7 @@ server.stop();
 
 ## How to use client
 ```js
-const { Client } = require('node-ws');
+const { Client } = require('another-ws-server');
 const client = new Client({
 	host: 'ws://...',
 	protocol: 'echo-protocol',
@@ -45,7 +45,7 @@ client.addListener('chat:message', (message) => {
 
 ## How to use web client
 ```js
-const { WebClient } = require('node-ws');
+const { WebClient } = require('another-ws-server');
 const webClient = new WebClient({
 	host: 'ws://...',
 	protocol: 'echo-protocol',
