@@ -1,6 +1,6 @@
 {
-	"name": "@jakubrwisniewski/another-ws-server",
-	"version": "1.0.1",
+	"name": "@jkob/another-ws-server",
+	"version": "1.0.0",
 	"description": "Simple multi-client, multi-project node websocket server and client",
 	"scripts": {
 		"test": "jest --ci --watchAll=false"
@@ -20,9 +20,6 @@
 		"url": "https://github.com/jakubrwisniewski/another-ws-server/issues"
 	},
 	"homepage": "https://github.com/jakubrwisniewski/another-ws-server#readme",
-	"publishConfig": {
-		"registry": "https://npm.pkg.github.com"
-	},
 	"dependencies": {
 		"websocket": "^1.0.33"
 	},
