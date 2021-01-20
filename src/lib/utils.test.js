@@ -1,6 +1,5 @@
-const { log, isAllowed, processMessageData, sendMessageToClients } = require('./utils');
+const { log, isAllowed, processMessageData, sendMessageToClients, resolvePid } = require('./utils');
 const { MessageType } = require('./types');
-const { client } = require('websocket');
 
 global.console.log = jest.fn();
 
@@ -68,7 +67,7 @@ describe('processMessageData', () => {
 		message.type = MessageType.Utf;
 		const [data, type] = processMessageData(message);
 		expect(data).toBe('utf data');
-		expect(type).toBe('utf-8');
+		expect(type).toBe('utf8');
 	});
 
 	it('should returns binary message data', () => {
@@ -171,6 +170,49 @@ describe('sendMessageToClients', () => {
 		expect(two.sendUTF).not.toHaveBeenCalled();
 		expect(three.sendUTF).not.toHaveBeenCalled();
 		expect(four.sendUTF).not.toHaveBeenCalled();
+	});
+
+});
+
+describe('resolvePid', () => {
+
+	it('should returns false when called with no json', () => {
+		const result = resolvePid('str');
+		expect(result).toBe(false);
+	});
+
+	it('should returns false when called with wrong type', () => {
+		const json = JSON.stringify({
+			event: 'fake'
+		});
+		const result = resolvePid(json);
+		expect(result).toBe(false);
+	});
+
+	it('should returns false when called without data', () => {
+		const json = JSON.stringify({
+			event: 'init'
+		});
+		const result = resolvePid(json);
+		expect(result).toBe(false);
+	});
+
+	it('should returns false when called without pid in data', () => {
+		const json = JSON.stringify({
+			event: 'init',
+			data: {}
+		});
+		const result = resolvePid(json);
+		expect(result).toBe(false);
+	});
+
+	it('should returns PID when called with pid', () => {
+		const json = JSON.stringify({
+			type: 'init',
+			data: { pid: 'PID' }
+		});
+		const result = resolvePid(json);
+		expect(result).toBe('PID');
 	});
 
 });

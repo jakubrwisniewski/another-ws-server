@@ -1,5 +1,6 @@
-const { wait, EventBus, isSupported } = require('./webUtils');
-const { EventType } = require('./types');
+const { wait, isSupported } = require('./lib/webUtils');
+const EventBus = require('./lib/eventBus');
+const { EventType } = require('./lib/types');
 
 const Status = {
 	Connected: 0,
@@ -49,8 +50,8 @@ const WebClient = function(options) {
 			};
 
 			driver.onmessage = (event) => {
-				const event = JSON.parse(event.data);
-				bus.trigger(event);
+				const busEvent = JSON.parse(event.data);
+				bus.trigger(busEvent);
 			};
 		});
 	};
@@ -66,7 +67,7 @@ const WebClient = function(options) {
 		await connect();
 	};
 
-	this.disconnect = () => {
+	this.close = () => {
 		status = Status.Disconnected;
 		driver.close();
 	};
@@ -75,12 +76,12 @@ const WebClient = function(options) {
 		send(type, data);
 	};
 
-	this.addListener = (type, callback) => {
-		bus.add(type, callback);
+	this.on = (type, callback) => {
+		bus.on(type, callback);
 	};
 
-	this.removeListener = (type, callback) => {
-		bus.remove(type, callback);
+	this.off = (type, callback) => {
+		bus.off(type, callback);
 	};
 };
 

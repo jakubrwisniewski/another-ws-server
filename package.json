@@ -3,7 +3,6 @@
 	"version": "1.0.0",
 	"description": "Simple multi-client, multi-project node websocket server and client",
 	"scripts": {
-		"start": "node src/server.js",
 		"test": "jest --ci --watchAll=false"
 	},
 	"repository": {

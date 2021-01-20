@@ -3,7 +3,7 @@ const EventType = {
 };
 
 const MessageType = {
-	Utf: 'utf-8',
+	Utf: 'utf8',
 	Binary: 'binary'
 };
 

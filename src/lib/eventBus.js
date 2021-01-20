@@ -1,9 +1,3 @@
-const wait = (ms) => {
-	return new Promise((resolve) => {
-		setTimeout(resolve, ms);
-	});
-};
-
 const EventBus = function() {
 	const types = {};
 	const build = (type) => {
@@ -12,12 +6,12 @@ const EventBus = function() {
 		}
 	}
 
-	this.add = (type, callback) => {
+	this.on = (type, callback) => {
 		build(type);
 		types[type].add(callback);
 	};
 
-	this.remove = (type, callback) => {
+	this.off = (type, callback) => {
 		build(type);
 		types[type].delete(callback);
 	};
@@ -29,12 +23,4 @@ const EventBus = function() {
 	};
 };
 
-const isSupported = () => (
-	"WebSocket" in window
-);
-
-module.exports = {
-	wait,
-	EventBus,
-	isSupported
-};
+module.exports = EventBus;

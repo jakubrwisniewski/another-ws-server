@@ -1,7 +1,7 @@
 const WebSocketClient = require('websocket').client;
-const log = require('./utils');
-const { MessageType, EventType } = require('./types');
-const { EventBus } = require('./webUtils');
+const { log } = require('./lib/utils');
+const { MessageType, EventType } = require('./lib/types');
+const EventBus = require('./lib/eventBus');
 
 const Client = function(options) {
 	const client = new WebSocketClient();
@@ -54,16 +54,22 @@ const Client = function(options) {
 		});
 	};
 
+	this.close = () => {
+		if(_connection?.close) {
+			_connection.close();
+		}
+	};
+
 	this.send = (type, data) => {
 		send(type, data);
 	};
 
-	this.addListener = (type, callback) => {
-		bus.add(type, callback);
+	this.on = (type, callback) => {
+		bus.on(type, callback);
 	};
 
-	this.removeListener = (type, callback) => {
-		bus.remove(type, callback);
+	this.off = (type, callback) => {
+		bus.off(type, callback);
 	};
 };
 

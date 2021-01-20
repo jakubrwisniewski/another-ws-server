@@ -33,7 +33,7 @@ const sendMessageToClients = (current, clients, messageData, messageType) => {
 			return client.pid === current.pid && client !== current;
 		})
 		.forEach((client) => {
-			log(`Message ${messageData} sent to ${client.remoteAddres} [${client.pid}]`);
+			log(`Message ${messageData} sent to #${client.id} [${client.pid}]`);
 			client[messageMethod](messageData);
 		});
 };
@@ -46,14 +46,12 @@ const resolvePid = (message) => {
 		}
 	}
 	catch(e) {}
-	finally {
-		return false;
-	}
+
+	return false;
 };
 
 module.exports = {
 	isAllowed,
-	time,
 	log,
 	processMessageData,
 	sendMessageToClients,

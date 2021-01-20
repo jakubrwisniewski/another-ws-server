@@ -13,7 +13,7 @@ How it works? When clients sends a message to server, server recognize its pid. 
 ## How to use server
 
 ```js
-const { Server } = require('another-ws-server');
+const Server = require('another-ws-server/server');
 const server = new Server({
 	allowedOrigins: [], // allow all if empty or missing
 	protocol: 'echo-protocol',
@@ -27,7 +27,7 @@ server.stop();
 
 ## How to use client
 ```js
-const { Client } = require('another-ws-server');
+const Client = require('another-ws-server/client');
 const client = new Client({
 	host: 'ws://...',
 	protocol: 'echo-protocol',
@@ -37,15 +37,17 @@ await client.connect();
 
 client.send('chat:message', 'Your Message');
 
-client.addListener('chat:message', (message) => {
+client.on('chat:message', (message) => {
 	console.log('Message', message);
 });
+
+client.close();
 ```
 
 
 ## How to use web client
 ```js
-const { WebClient } = require('another-ws-server');
+const WebClient = require('another-ws-server/webClient');
 const webClient = new WebClient({
 	host: 'ws://...',
 	protocol: 'echo-protocol',
@@ -56,7 +58,9 @@ await webClient.connect();
 
 webClient.send('chat:message', 'Your message from browser');
 
-webClient.addListener('chat:message', (message) => {
+webClient.on('chat:message', (message) => {
 	console.log('Message', message);
 });
+
+webClient.close();
 ```
