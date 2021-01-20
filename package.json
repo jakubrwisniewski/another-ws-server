@@ -1,7 +1,7 @@
 {
 	"name": "@jkob/another-ws-server",
 	"version": "1.0.1",
-	"description": "Simple multi-client, multi-project node websocket server and client",
+	"description": "Simple multi-client, multi-scope websocket server and client",
 	"scripts": {
 		"test": "jest --ci --watchAll=false"
 	},
@@ -10,7 +10,6 @@
 		"url": "git+https://github.com/jakubrwisniewski/another-ws-server.git"
 	},
 	"keywords": [
-		"node",
 		"ws",
 		"websocket"
 	],

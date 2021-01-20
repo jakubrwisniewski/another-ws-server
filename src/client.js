@@ -44,7 +44,7 @@ const Client = function(options) {
 				connection.on('message', processMessage);
 
 				send(EventType.Init, {
-					pid: options.pid
+					scope: options.scope
 				});
 
 				resolve();

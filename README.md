@@ -1,17 +1,16 @@
 # another-ws-server
-Simple websocket server with multi-client and separate projects support. Built up on `websocket` package.
+Simple websocket server with multi-client and multi-scope support. Built up on `websocket` package.
 
 ## How multi-client support works?
 
 Server receives message from client and broadcasts it to all connected clients (besides the one who sends the message).
 
-## How separate projects work?
+## How multi-scope works?
 
-You need only a single websocket server to handle multiple projects separately. This is achieved by `pid` flag passed with options.
-How it works? When clients sends a message to server, server recognize its pid. Server broadcast this message to other clients with the same pid. Any other client with other pid (from other projects) won't receive this message.
+You need only a single websocket server and you can connect multiple projects (scopes) and send messages for clients within scope.
+This means, messages from one project won't be send to another.
 
 ## How to use server
-
 ```js
 const Server = require('@jkob/another-ws-server/server');
 const server = new Server({

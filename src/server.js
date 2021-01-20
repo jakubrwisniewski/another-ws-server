@@ -1,6 +1,6 @@
 const WebSocketServer = require('websocket').server;
 const http = require('http');
-const { isAllowed, log, resolvePid, processMessageData, sendMessageToClients } = require('./lib/utils');
+const { isAllowed, log, resolveScope, processMessageData, sendMessageToClients } = require('./lib/utils');
 
 const Server = function(options) {
 	const server = http.createServer((request, response) => {
@@ -20,9 +20,9 @@ const Server = function(options) {
 			return;
 		}
 
-		if(!client.pid) {
-			client.pid = resolvePid(messageData);
-			log(`#${client.id} bind to ${client.pid}`);
+		if(!client.scope) {
+			client.scope = resolveScope(messageData);
+			log(`#${client.id} bind to ${client.scope}`);
 			return;
 		}
 
@@ -45,7 +45,7 @@ const Server = function(options) {
 
 		client.on('close', () => {
 			clients.delete(client);
-			log(`${client.id} disconnected`);
+			log(`#${client.id} disconnected`);
 		});
 	};
 

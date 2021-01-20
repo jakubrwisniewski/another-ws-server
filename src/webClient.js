@@ -35,7 +35,7 @@ const WebClient = function(options) {
 			driver.onopen = () => {
 				status = Status.Connected;
 				send(EventType.Init, {
-					pid: options.pid
+					scope: options.scope
 				});
 				resolve(true);
 			};

@@ -1,4 +1,4 @@
-const { log, isAllowed, processMessageData, sendMessageToClients, resolvePid } = require('./utils');
+const { log, isAllowed, processMessageData, sendMessageToClients, resolveScope } = require('./utils');
 const { MessageType } = require('./types');
 
 global.console.log = jest.fn();
@@ -82,11 +82,11 @@ describe('processMessageData', () => {
 describe('sendMessageToClients', () => {
 
 	const clients = new Map();
-	const getFakeClient = (pid) => ({
+	const getFakeClient = (scope) => ({
 		remoteAddr: 'fake',
 		sendUTF: jest.fn(),
 		sendBytes: jest.fn(),
-		pid: pid
+		scope: scope
 	});
 
 	const clearClient = (client) => {
@@ -174,10 +174,10 @@ describe('sendMessageToClients', () => {
 
 });
 
-describe('resolvePid', () => {
+describe('resolveScope', () => {
 
 	it('should returns false when called with no json', () => {
-		const result = resolvePid('str');
+		const result = resolveScope('str');
 		expect(result).toBe(false);
 	});
 
@@ -185,7 +185,7 @@ describe('resolvePid', () => {
 		const json = JSON.stringify({
 			event: 'fake'
 		});
-		const result = resolvePid(json);
+		const result = resolveScope(json);
 		expect(result).toBe(false);
 	});
 
@@ -193,7 +193,7 @@ describe('resolvePid', () => {
 		const json = JSON.stringify({
 			event: 'init'
 		});
-		const result = resolvePid(json);
+		const result = resolveScope(json);
 		expect(result).toBe(false);
 	});
 
@@ -202,16 +202,16 @@ describe('resolvePid', () => {
 			event: 'init',
 			data: {}
 		});
-		const result = resolvePid(json);
+		const result = resolveScope(json);
 		expect(result).toBe(false);
 	});
 
 	it('should returns PID when called with pid', () => {
 		const json = JSON.stringify({
 			type: 'init',
-			data: { pid: 'PID' }
+			data: { scope: 'PID' }
 		});
-		const result = resolvePid(json);
+		const result = resolveScope(json);
 		expect(result).toBe('PID');
 	});
 

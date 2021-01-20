@@ -30,19 +30,19 @@ const sendMessageToClients = (current, clients, messageData, messageType) => {
 
 	[...clients.values()]
 		.filter((client) => {
-			return client.pid === current.pid && client !== current;
+			return client.scope === current.scope && client !== current;
 		})
 		.forEach((client) => {
-			log(`Message ${messageData} sent to #${client.id} [${client.pid}]`);
+			log(`Message ${messageData} sent to #${client.id} [${client.scope}]`);
 			client[messageMethod](messageData);
 		});
 };
 
-const resolvePid = (message) => {
+const resolveScope = (message) => {
 	try {
 		const event = JSON.parse(message);
 		if(event?.type === EventType.Init) {
-			return event?.data?.pid || false;
+			return event?.data?.scope || false;
 		}
 	}
 	catch(e) {}
@@ -55,5 +55,5 @@ module.exports = {
 	log,
 	processMessageData,
 	sendMessageToClients,
-	resolvePid
+	resolveScope
 };
