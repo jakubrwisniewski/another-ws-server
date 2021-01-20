@@ -1,6 +1,6 @@
 {
 	"name": "@jkob/another-ws-server",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Simple multi-client, multi-project node websocket server and client",
 	"scripts": {
 		"test": "jest --ci --watchAll=false"
