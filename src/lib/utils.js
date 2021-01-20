@@ -6,7 +6,7 @@ const isAllowed = (allowedOrigins, origin) => {
 
 const time = () => {
 	const date = new Date();
-	return date.toLocaleTimeString();
+	return date.toLocaleTimeString('pl-PL');
 };
 
 const log = (message) => {
