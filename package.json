@@ -7,7 +7,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/jakubrwisniewski/another-ws-server.git"
+		"url": "git://github.com/jakubrwisniewski/another-ws-server.git"
 	},
 	"keywords": [
 		"node",
@@ -20,6 +20,9 @@
 		"url": "https://github.com/jakubrwisniewski/another-ws-server/issues"
 	},
 	"homepage": "https://github.com/jakubrwisniewski/another-ws-server#readme",
+	"publishConfig": {
+		"registry": "https://npm.pkg.github.com"
+	},
 	"dependencies": {
 		"websocket": "^1.0.33"
 	},
