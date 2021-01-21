@@ -1,6 +1,6 @@
 {
 	"name": "@jkob/another-ws-server",
-	"version": "1.0.2",
+	"version": "1.0.3",
 	"description": "Simple multi-client, multi-scope websocket server and client",
 	"scripts": {
 		"test": "jest --ci --watchAll=false"
