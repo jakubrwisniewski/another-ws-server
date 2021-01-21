@@ -17,7 +17,7 @@ const WebClient = function(options) {
 	let driver = null;
 
 	const send = (type, data) => {
-		if(status === Status.Connected && driver?.send) {
+		if(status === Status.Connected && driver && driver.send) {
 			const event = { type, data };
 			driver.send(JSON.stringify(event));
 		}
