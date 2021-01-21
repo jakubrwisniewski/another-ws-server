@@ -4,9 +4,7 @@ const { MessageType, EventType } = require('./lib/types');
 const EventBus = require('./lib/eventBus');
 
 const Client = function(options) {
-	const client = new WebSocketClient();
 	const bus = new EventBus();
-
 	let _connection = null;
 
 	const processMessage = (message) => {
@@ -23,11 +21,13 @@ const Client = function(options) {
 		}
 	};
 
-	client.on('connectFailed', (error) => {
-		log(`Client connect error: ${error.toString()}`);
-	});
-
 	this.connect = () => {
+		const client = new WebSocketClient();
+
+		client.on('connectFailed', (error) => {
+			log(`Client connect error: ${error.toString()}`);
+		});
+
 		return new Promise((resolve) => {
 			client.on('connect', (connection) => {
 				_connection = connection;
