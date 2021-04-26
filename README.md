@@ -1,4 +1,7 @@
 # another-ws-server
+
+![build](https://github.com/jakubrwisniewski/another-ws-server/actions/workflows/build.yml/badge.svg?branch=master)
+
 Simple websocket server with multi-client and multi-scope support. Built up on `websocket` package.
 
 ## How multi-client support works?
