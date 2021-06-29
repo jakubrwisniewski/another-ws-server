@@ -25,7 +25,7 @@ const Client = function(options) {
 		const client = new WebSocketClient();
 
 		client.on('connectFailed', (error) => {
-			log(`Client connect error: ${error.toString()}`);
+			options.logging && log(`Client connect error: ${error.toString()}`);
 		});
 
 		return new Promise((resolve) => {
@@ -34,11 +34,11 @@ const Client = function(options) {
 
 				connection.on('close', () => {
 					_connection = null;
-					log('Disconnected');
+					options.logging && log('Disconnected');
 				});
 
 				connection.on('error', (error) => {
-					log(`Connection error: ${error.toString()}`);
+					options.logging && log(`Connection error: ${error.toString()}`);
 				});
 
 				connection.on('message', processMessage);
