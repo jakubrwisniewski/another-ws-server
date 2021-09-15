@@ -1,6 +1,8 @@
 # another-ws-server
 
 ![build](https://github.com/jakubrwisniewski/another-ws-server/actions/workflows/build.yml/badge.svg?branch=master)
+[![](https://tokei.rs/b1/github/jakubrwisniewski/another-ws-server)](jakubrwisniewski/another-ws-server)
+
 
 Simple websocket server with multi-client and multi-scope support. Built up on `websocket` package.
 
