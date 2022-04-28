@@ -83,6 +83,10 @@ const WebClient = function(options) {
 	this.off = (type, callback) => {
 		bus.off(type, callback);
 	};
+
+	this.trigget = (type, data) => {
+		bus.trigger({ type, data });
+	};
 };
 
 WebClient.supported = isSupported;
