@@ -84,7 +84,7 @@ const WebClient = function(options) {
 		bus.off(type, callback);
 	};
 
-	this.trigget = (type, data) => {
+	this.trigger = (type, data) => {
 		bus.trigger({ type, data });
 	};
 };
