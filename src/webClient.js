@@ -15,6 +15,8 @@ const WebClient = function(options) {
 	const bus = new EventBus();
 	let status = Status.Disconnected;
 	let driver = null;
+	let onConnected = null;
+	let onDisconnected = null;
 
 	const send = (type, data) => {
 		if(status === Status.Connected && driver && driver.send) {
@@ -37,12 +39,21 @@ const WebClient = function(options) {
 				send(EventType.Init, {
 					scope: options.scope
 				});
+
+				if(onConnected && typeof onConnected === "function") {
+					onConnected();
+				}
+
 				resolve(true);
 			};
 
 			driver.onclose = (event) => {
 				driver = null;
 				status = Status.Disconnected;
+
+				if(onDisconnected && typeof onDisconnected === "function") {
+					onDisconnected();
+				}
 
 				if(!event.wasClean) {
 					reconnect();
@@ -87,6 +98,22 @@ const WebClient = function(options) {
 	this.trigger = (type, data) => {
 		bus.trigger({ type, data });
 	};
+
+	this.isConnected = () => {
+		return status === Status.Connected;
+	};
+
+	this.onConnect = (callback) => {
+		if(callback) {
+			onConnected = callback;
+		}
+	};
+
+	this.onDisconnect = (callback) => {
+		if(callback) {
+			onDisconnected = callback;
+		}
+	}
 };
 
 WebClient.supported = isSupported;
